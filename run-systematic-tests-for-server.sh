@@ -4,33 +4,24 @@
 # Format: "JUMLAH_VUS:JUMLAH_ITERATIONS"
 # Ini adalah matriks yang Anda minta.
 SCENARIOS=(
-    # 1 User
-    "1:100"
+     # 1 User
     "1:1000"
-    "1:10000"
 
     # 10 Users
-    "10:100"
     "10:1000"
-    "10:10000"
 
     # 100 Users
-    "100:100"
     "100:1000"
-    "100:10000"
 
-    # tidak menggunakan 100: 1000 karena jumlah iterations (100) tidak boleh lebih kecil dari jumlah VUs (1000) saat menggunakan executor shared-iterations.
     # 1000 Users
-    # "1000:100"
     "1000:1000"
-    "1000:10000"
 )
 
 # Nama file script k6 yang baru
-K6_SCRIPT="test-all-files.js"
+K6_SCRIPT="test-fileserver-for-server.js"
 
 # Tentukan nama folder untuk menyimpan semua hasil
-RESULTS_DIR="systematic-results"
+RESULTS_DIR="systematic-results-server"
 mkdir -p $RESULTS_DIR
 
 # --------------------------------------------------

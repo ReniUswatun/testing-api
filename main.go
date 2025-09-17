@@ -1,60 +1,58 @@
 package main
 
 import (
-	"fmt"
 	"net/http"
-	"os"
 
 	"github.com/gin-gonic/gin"
 )
 
-func generateFiles() {
-	files := map[string]int{
-		"10kb.html":   10 * 1024,
-		"100kb.html":  100 * 1024,
-		"1mb.html":    1024 * 1024,
-		"5mb.html":    5 * 1024 * 1024,
-		"10mb.html":   10 * 1024 * 1024,
-	}
+// func generateFiles() {
+// 	files := map[string]int{
+// 		"10kb.html":   10 * 1024,
+// 		"100kb.html":  100 * 1024,
+// 		"1mb.html":    1024 * 1024,
+// 		"5mb.html":    5 * 1024 * 1024,
+// 		"10mb.html":   10 * 1024 * 1024,
+// 	}
 
-	// bikin folder static kalau belum ada
-	os.Mkdir("static", 0755)
+// 	// bikin folder static kalau belum ada
+// 	os.Mkdir("static", 0755)
 
-	for name, size := range files {
-		path := "static/" + name
-		if _, err := os.Stat(path); err == nil {
-			fmt.Println("File already exists:", path)
-			continue
-		}
+// 	for name, size := range files {
+// 		path := "static/" + name
+// 		if _, err := os.Stat(path); err == nil {
+// 			fmt.Println("File already exists:", path)
+// 			continue
+// 		}
 
-		f, err := os.Create(path)
-		if err != nil {
-			panic(err)
-		}
+// 		f, err := os.Create(path)
+// 		if err != nil {
+// 			panic(err)
+// 		}
 
-		header := `<!DOCTYPE html>
-<html lang="en">
-<head><meta charset="UTF-8"><title>Dummy</title></head>
-<body>
-<h1>` + name + `</h1>
-`
-		footer := "</body></html>"
+// 		header := `<!DOCTYPE html>
+// <html lang="en">
+// <head><meta charset="UTF-8"><title>Dummy</title></head>
+// <body>
+// <h1>` + name + `</h1>
+// `
+// 		footer := "</body></html>"
 
-		f.WriteString(header)
+// 		f.WriteString(header)
 
-		content := "<p>Dummy line for testing file size</p>\n"
-		for written := len(header); written < size-len(footer); written += len(content) {
-			f.WriteString(content)
-		}
+// 		content := "<p>Dummy line for testing file size</p>\n"
+// 		for written := len(header); written < size-len(footer); written += len(content) {
+// 			f.WriteString(content)
+// 		}
 
-		f.WriteString(footer)
-		f.Close()
-		fmt.Println("Generated", path)
-	}
-}
+// 		f.WriteString(footer)
+// 		f.Close()
+// 		fmt.Println("Generated", path)
+// 	}
+// }
 
 func main() {
-	generateFiles() // bikin file dummy dulu
+	// generateFiles() // bikin file dummy dulu
 
 	r := gin.Default()
 
